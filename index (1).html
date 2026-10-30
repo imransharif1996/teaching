@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Graduate Teaching Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbfaff;
+    --surface: #ffffff;
+    --fg: #14111b;
+    --muted: #645f79;
+    --faint: #948ea9;
+    --rule: #e9e4f3;
+    --accent: #512888;
+    --accent-2: #8b5cf6;
+    --accent-soft: #f4effd;
+    --track: #e9e3f6;
+    --dot: rgba(81,40,136,.07);
+    --shadow-sm: 0 1px 2px rgba(20,17,27,.05);
+    --shadow-lg: 0 2px 4px rgba(20,17,27,.04), 0 14px 36px -16px rgba(81,40,136,.24);
+    --shadow-hover: 0 2px 8px rgba(20,17,27,.06), 0 24px 50px -18px rgba(81,40,136,.32);
+    --glow: radial-gradient(880px 420px at 10% -10%, rgba(139,92,246,.14), transparent 60%),
+            radial-gradient(680px 340px at 95% 2%, rgba(81,40,136,.11), transparent 58%);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d0c12; --surface: #16141e; --fg: #f2f0f7; --muted: #aaa4bd; --faint: #827c97;
+      --rule: #262232; --accent: #c6abf7; --accent-2: #9d7ff2; --accent-soft: #1f1930; --track: #251f35;
+      --dot: rgba(198,171,247,.07);
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.45);
+      --shadow-lg: 0 2px 4px rgba(0,0,0,.3), 0 16px 40px -18px rgba(0,0,0,.85);
+      --shadow-hover: 0 2px 8px rgba(0,0,0,.4), 0 26px 56px -20px rgba(0,0,0,.95);
+      --glow: radial-gradient(880px 420px at 10% -10%, rgba(139,92,246,.17), transparent 60%),
+              radial-gradient(680px 340px at 95% 2%, rgba(99,60,170,.15), transparent 58%);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d0c12; --surface: #16141e; --fg: #f2f0f7; --muted: #aaa4bd; --faint: #827c97;
+    --rule: #262232; --accent: #c6abf7; --accent-2: #9d7ff2; --accent-soft: #1f1930; --track: #251f35;
+    --dot: rgba(198,171,247,.07);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.45);
+    --shadow-lg: 0 2px 4px rgba(0,0,0,.3), 0 16px 40px -18px rgba(0,0,0,.85);
+    --shadow-hover: 0 2px 8px rgba(0,0,0,.4), 0 26px 56px -20px rgba(0,0,0,.95);
+    --glow: radial-gradient(880px 420px at 10% -10%, rgba(139,92,246,.17), transparent 60%),
+            radial-gradient(680px 340px at 95% 2%, rgba(99,60,170,.15), transparent 58%);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    color: var(--fg);
+    background-color: var(--bg);
+    background-image:
+      var(--glow),
+      radial-gradient(var(--dot) 1px, transparent 1px);
+    background-size: auto, 22px 22px;
+    background-repeat: no-repeat, repeat;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 88px 18px 120px; }
+
+  /* ---------- Hero ---------- */
+  .hero { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+  @media (max-width: 640px) { .hero { grid-template-columns: 1fr; gap: 32px; } }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: .69rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin: 0 0 18px;
+  }
+  .eyebrow::before { content: ""; width: 28px; height: 2px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+
+  h1 {
+    font-family: Fraunces, Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 5.6vw, 3.1rem);
+    line-height: 1.03; letter-spacing: -.028em; font-weight: 700;
+    margin: 0 0 24px;
+    background: linear-gradient(118deg, var(--fg) 28%, var(--accent) 108%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .id { border-left: 2px solid var(--accent); padding-left: 17px; }
+  .id .name { font-size: 1.08rem; font-weight: 600; margin: 0 0 3px; letter-spacing: -.005em; }
+  .id p { color: var(--muted); font-size: .93rem; margin: 0; }
+
+  /* ---------- Gauge ---------- */
+  .gauge { position: relative; width: 168px; height: 168px; flex: none; justify-self: center; }
+  .gauge svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .gauge .bg-ring { fill: none; stroke: var(--track); stroke-width: 11; }
+  .gauge .fg-ring {
+    fill: none; stroke: url(#ringGrad); stroke-width: 11; stroke-linecap: round;
+    stroke-dasharray: 414; stroke-dashoffset: 414;
+    transition: stroke-dashoffset 1.5s cubic-bezier(.22,.9,.28,1);
+  }
+  .gauge .center {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center; gap: 1px;
+  }
+  .gauge .num {
+    font-family: Fraunces, Georgia, serif; font-size: 2.5rem; line-height: 1;
+    font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums;
+  }
+  .gauge .den { font-size: .74rem; color: var(--faint); letter-spacing: .06em; }
+  .gauge .cap { font-size: .68rem; color: var(--muted); letter-spacing: .07em; text-transform: uppercase; font-weight: 600; margin-top: 4px; }
+  @media (prefers-reduced-motion: reduce) { .gauge .fg-ring { transition: none; } }
+
+  .hero-note { color: var(--muted); font-size: .89rem; margin: 30px 0 0; max-width: 54ch; }
+
+  /* ---------- Sections ---------- */
+  .divider { height: 1px; background: var(--rule); border: 0; margin: 46px 0 0; }
+  .section-head { margin: 40px 0 6px; }
+  h2 { font-family: Fraunces, Georgia, serif; font-size: 1.45rem; font-weight: 600; letter-spacing: -.015em; margin: 0; }
+  .note { color: var(--muted); font-size: .92rem; margin: 6px 0 30px; max-width: 58ch; }
+
+  /* ---------- Cards ---------- */
+  .card {
+    position: relative; background: var(--surface);
+    border: 1px solid var(--rule); border-radius: 18px;
+    padding: 30px 32px 28px; margin-bottom: 22px;
+    box-shadow: var(--shadow-lg);
+    transition: box-shadow .26s ease, transform .26s ease;
+    overflow: hidden;
+  }
+  .card::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px;
+    background: linear-gradient(180deg, var(--accent), var(--accent-2)); }
+  .card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+  .card.featured { border-color: color-mix(in srgb, var(--accent) 28%, var(--rule)); }
+
+  .ribbon {
+    position: absolute; top: 18px; right: -34px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    color: #fff; font-size: .62rem; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; padding: 5px 40px; transform: rotate(38deg);
+  }
+
+  .card-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 11px; margin-bottom: 6px; }
+  .code { background: var(--accent-soft); color: var(--accent); font-size: .7rem; font-weight: 600;
+    letter-spacing: .09em; padding: 5px 10px; border-radius: 6px; white-space: nowrap; }
+  .title { font-family: Fraunces, Georgia, serif; font-size: 1.28rem; font-weight: 600; letter-spacing: -.015em; }
+  .meta { color: var(--faint); font-size: .855rem; margin: 0; }
+  .meta a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .meta a:hover { color: var(--accent); border-color: var(--accent); }
+
+  .metrics { margin-top: 24px; }
+  .metric { margin-bottom: 16px; }
+  .metric:last-child { margin-bottom: 0; }
+  .metric-row { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; margin-bottom: 7px; }
+  .metric-label { font-size: .91rem; color: var(--muted); }
+  .metric-value { font-family: Fraunces, Georgia, serif; font-size: 1.14rem; font-weight: 700;
+    font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .metric-value .max { font-size: .75rem; font-weight: 400; color: var(--faint); }
+  .track { height: 6px; background: var(--track); border-radius: 99px; overflow: hidden; }
+  .fill { height: 100%; width: 0; border-radius: 99px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    transition: width 1.15s cubic-bezier(.22,.9,.3,1); }
+  @media (prefers-reduced-motion: reduce) { .fill { transition: none; } }
+
+  .quote {
+    position: relative; margin: 26px 0 0; padding: 22px 24px 20px 48px;
+    background: var(--accent-soft); border-radius: 13px;
+    font-family: Fraunces, Georgia, serif; font-size: 1rem; font-style: italic; line-height: 1.66;
+  }
+  .quote::before {
+    content: "\201C"; position: absolute; left: 16px; top: 6px;
+    font-family: Fraunces, Georgia, serif; font-size: 3rem; line-height: 1;
+    color: var(--accent); opacity: .34;
+  }
+  .quote cite { display: block; margin-top: 10px; font-size: .78rem; font-style: normal;
+    color: var(--muted); font-family: Inter, sans-serif; letter-spacing: .02em; }
+  .quote + .quote { margin-top: 14px; }
+
+  .view {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 24px;
+    color: var(--accent); text-decoration: none; font-size: .89rem; font-weight: 500;
+    border: 1px solid var(--rule); border-radius: 9px; padding: 9px 16px;
+    box-shadow: var(--shadow-sm);
+    transition: background .18s ease, border-color .18s ease, transform .18s ease;
+  }
+  .view:hover { background: var(--accent-soft); border-color: var(--accent); transform: translateY(-1px); }
+  .view svg { width: 15px; height: 15px; flex: none; }
+
+  footer { margin-top: 54px; padding-top: 26px; border-top: 1px solid var(--rule);
+    color: var(--muted); font-size: .87rem; max-width: 64ch; }
+  footer strong { color: var(--fg); font-weight: 600; }
+
+  @media (max-width: 520px) {
+    .wrap { padding-top: 58px; }
+    .card { padding: 25px 22px 23px; }
+    .quote { padding-left: 42px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Kansas State University</p>
+        <h1>Graduate Teaching<br>Assistant</h1>
+        <div class="id">
+          <p class="name">Muhammad Imran Sharif</p>
+          <p>Department of Computer Science, Kansas State University</p>
+          <p>Manhattan, Kansas, United States</p>
+        </div>
+      </div>
+
+      <div class="gauge">
+        <svg viewBox="0 0 150 150" aria-hidden="true">
+          <defs>
+            <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="var(--accent)"/>
+              <stop offset="100%" stop-color="var(--accent-2)"/>
+            </linearGradient>
+          </defs>
+          <circle class="bg-ring" cx="75" cy="75" r="66"/>
+          <circle class="fg-ring" id="ring" cx="75" cy="75" r="66"/>
+        </svg>
+        <div class="center">
+          <div class="num">4.8</div>
+          <div class="den">OUT OF 5</div>
+          <div class="cap">CIS 705</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="hero-note">Overall effectiveness as a teacher, rated by students in CIS 705 Programming Languages, Fall 2025.</p>
+  </header>
+
+  <hr class="divider">
+
+  <div class="section-head"><h2>Student ratings of instruction</h2></div>
+  <p class="note">Issued by the Teaching and Learning Center at Kansas State University. All ratings are on a five point scale.</p>
+
+  <!-- CIS 705 -->
+  <article class="card featured">
+    <span class="ribbon">Top rated</span>
+    <div class="card-head">
+      <span class="code">CIS 705</span>
+      <span class="title">Programming Languages</span>
+    </div>
+    <p class="meta">Fall 2025 &middot; Teaching assistant to <a href="https://www.cs.ksu.edu/about/people/faculty/amtoft/" target="_blank" rel="noopener">Dr. Torben Amtoft</a></p>
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-row"><span class="metric-label">Overall effectiveness as a teacher</span><span class="metric-value">4.8 <span class="max">/ 5</span></span></div>
+        <div class="track"><div class="fill" data-w="96"></div></div>
+      </div>
+      <div class="metric">
+        <div class="metric-row"><span class="metric-label">Increased desire to learn about the subject</span><span class="metric-value">4.8 <span class="max">/ 5</span></span></div>
+        <div class="track"><div class="fill" data-w="96"></div></div>
+      </div>
+      <div class="metric">
+        <div class="metric-row"><span class="metric-label">Amount learned in the course</span><span class="metric-value">4.8 <span class="max">/ 5</span></span></div>
+        <div class="track"><div class="fill" data-w="96"></div></div>
+      </div>
+    </div>
+
+    <blockquote class="quote">
+      Imran has been so helpful throughout the course. He helped me with office hours and his elaborate comments on my assignments.
+      <cite>Student comment, CIS 705</cite>
+    </blockquote>
+
+    <blockquote class="quote">
+      Great TA.
+      <cite>Student comment, CIS 705</cite>
+    </blockquote>
+
+    <a class="view" href="CIS%20705%20A.pdf">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+      View the full report
+    </a>
+  </article>
+
+  <!-- CIS 505 -->
+  <article class="card">
+    <div class="card-head">
+      <span class="code">CIS 505</span>
+      <span class="title">Programming Languages</span>
+    </div>
+    <p class="meta">Fall 2025 &middot; Teaching assistant to <a href="https://www.cs.ksu.edu/about/people/faculty/amtoft/" target="_blank" rel="noopener">Dr. Torben Amtoft</a></p>
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-row"><span class="metric-label">Overall effectiveness as a teacher</span><span class="metric-value">4.0 <span class="max">/ 5</span></span></div>
+        <div class="track"><div class="fill" data-w="80"></div></div>
+      </div>
+      <div class="metric">
+        <div class="metric-row"><span class="metric-label">Increased desire to learn about the subject</span><span class="metric-value">3.8 <span class="max">/ 5</span></span></div>
+        <div class="track"><div class="fill" data-w="76"></div></div>
+      </div>
+      <div class="metric">
+        <div class="metric-row"><span class="metric-label">Amount learned in the course</span><span class="metric-value">3.9 <span class="max">/ 5</span></span></div>
+        <div class="track"><div class="fill" data-w="78"></div></div>
+      </div>
+    </div>
+
+    <blockquote class="quote">
+      One of the best teachers in the department, he&rsquo;s done a great job teaching this semester.
+      <cite>Student comment, CIS 505</cite>
+    </blockquote>
+
+    <a class="view" href="CIS%20505%20%20A.pdf">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+      View the full report
+    </a>
+  </article>
+
+</div>
+
+<script>
+  (function () {
+    var ring = document.getElementById('ring');
+    var C = 2 * Math.PI * 66;
+    if (ring) { ring.style.strokeDasharray = C; ring.style.strokeDashoffset = C; }
+    function fillRing() { if (ring) ring.style.strokeDashoffset = C * (1 - 4.8 / 5); }
+
+    var fills = document.querySelectorAll('.fill');
+    function paintAll() { fills.forEach(function (f) { f.style.width = f.dataset.w + '%'; }); }
+
+    setTimeout(fillRing, 260);
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.style.width = e.target.dataset.w + '%'; io.unobserve(e.target); }
+        });
+      }, { threshold: 0.25 });
+      fills.forEach(function (f) { io.observe(f); });
+      setTimeout(paintAll, 2800);
+    } else { paintAll(); }
+  })();
+</script>
+</body>
+</html>
