@@ -191,6 +191,18 @@
     color: var(--muted); font-size: .87rem; max-width: 64ch; }
   footer strong { color: var(--fg); font-weight: 600; }
 
+  /* ---------- Gallery ---------- */
+  .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 6px; }
+  @media (max-width: 600px) { .gallery { grid-template-columns: 1fr; } }
+  .shot {
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 14px;
+    overflow: hidden; box-shadow: var(--shadow-lg);
+    transition: box-shadow .26s ease, transform .26s ease;
+  }
+  .shot:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .shot img { display: block; width: 100%; height: 190px; object-fit: cover; }
+  .shot p { margin: 0; padding: 14px 16px 16px; font-size: .86rem; color: var(--muted); }
+
   @media (max-width: 520px) {
     .wrap { padding-top: 58px; }
     .card { padding: 25px 22px 23px; }
@@ -313,6 +325,20 @@
       View the full report
     </a>
   </article>
+
+  <div class="section-head"><h2>Department and research group</h2></div>
+  <p class="note">Kansas State University, Department of Computer Science.</p>
+
+  <div class="gallery">
+    <figure class="shot">
+      <img src="lab-2024.jpg" alt="Research group gathering, Kansas State University">
+      <p>End of semester gathering with the research group, Spring 2024.</p>
+    </figure>
+    <figure class="shot">
+      <img src="group-2025.jpg" alt="Research group, Department of Computer Science, Kansas State University">
+      <p>Research group, Department of Computer Science, Kansas State University.</p>
+    </figure>
+  </div>
 
 </div>
 
