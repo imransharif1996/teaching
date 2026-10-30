@@ -9,7 +9,10 @@
   h1 { font-size: 26px; margin-bottom: 4px; }
   .sub { color: #555; margin-top: 0; }
   hr { border: none; border-top: 1px solid #ccc; margin: 24px 0; }
-  .poster { margin-bottom: 26px; }
+  .poster { margin-bottom: 26px; display: flex; gap: 22px; align-items: flex-start; }
+  .poster img { width: 220px; height: 220px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+  .info { flex: 1; }
+  @media (max-width: 600px) { .poster { flex-direction: column; } .poster img { width: 100%; height: auto; } }
   .year { font-weight: bold; color: #512888; }
   .title { font-size: 18px; font-weight: bold; margin: 2px 0; }
   .authors { margin: 2px 0; }
@@ -25,27 +28,36 @@
   <hr>
 
   <div class="poster">
+    <img src="photo-2026.jpg" alt="Presenting the 2026 poster">
+    <div class="info">
     <div class="year">2026</div>
     <div class="title">Four-Stream MSGL-Transformer for Mouse Social Behavior Recognition</div>
     <div class="authors"><b>Muhammad Imran Sharif</b> and Doina Caragea</div>
     <div class="note">Multi-stream transformer with cross-stream attention on the CRIM13 dataset.</div>
     <a class="btn" href="Poster-2026.pdf" target="_blank">View poster (PDF)</a>
+    </div>
   </div>
 
   <div class="poster">
+    <img src="photo-2025.jpg" alt="Presenting the 2025 poster">
+    <div class="info">
     <div class="year">2025</div>
     <div class="title">Rodent Social Behavior Recognition using a Global Context-aware Vision Transformer Network</div>
     <div class="authors"><b>Muhammad Imran Sharif</b> and Doina Caragea</div>
     <div class="note">Vision transformer for rat social interaction on the RatSI dataset.</div>
     <a class="btn" href="Poster-2025.pdf" target="_blank">View poster (PDF)</a>
+    </div>
   </div>
 
   <div class="poster">
+    <img src="photo-2023.jpg" alt="Presenting the 2023 poster">
+    <div class="info">
     <div class="year">2023</div>
     <div class="title">Rat Behavior Recognition Using Deep Learning and Point-Based Annotation</div>
     <div class="authors">Emily Alfs-Votipka*, <b>Muhammad Imran Sharif</b>*, Weiqiang Zhi*, Shannon Ruble, Doina Caragea, Daniel Andresen, David Turner, Bethany Plakke Anderson, and Maria M. Diehl</div>
     <div class="note">* Equal contribution</div>
     <a class="btn" href="Poster-2023.pdf" target="_blank">View poster (PDF)</a>
+    </div>
   </div>
 </body>
 </html>
